@@ -1,18 +1,22 @@
-console.log("app.js");
 import express from "express";
-//import routerV1 from "~/routes/routes";
+import routerV1 from "./routes/routes";
+import dotenv from "dotenv";
 
+dotenv.config();
 // Create Express app
 const app = express();
 
-//app.use("/api/client-service/v1", routerV1);
 
-//const server = http.createServer(app);
-// Serve static files (if needed)
-//app.use(express.static("public"));
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Middleware to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/api/client-service/v1", routerV1);
 
 // Start server
-const PORT = 3000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

@@ -1,3 +1,7 @@
 ###
 POST http://localhost:3000/api/client-service/v1/dashboard
+Content-Type: application/json
 
+{
+    "inputNumber": 22
+}
